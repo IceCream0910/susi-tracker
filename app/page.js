@@ -32,7 +32,7 @@ export default function Home() {
             <Spacer y={5} />
             <div style={{ display: 'flex' }}>
               <h1>#개발 <span className="tag blue">{`#코딩/>`}</span> #웹🌐 <span className="tag green">#UI/UX</span><br></br>
-                #집🏠<span className="tag pink">#아이디어</span>를_뚝딱뚝딱🔨</h1>
+                #집🏠 <span className="tag pink">#아이디어</span>를_뚝딱뚝딱🔨</h1>
             </div>
           </div>
 
@@ -226,7 +226,7 @@ export default function Home() {
             <Spacer y={5} />
             <h3><span className="tag pink">#컴퓨터활용능력_2급</span>&nbsp;<span style={{ fontSize: '13px', fontWeight: '100' }}>2016</span></h3>
             <Spacer y={5} />
-            <h3><span className="tag green">#GTQ_그래픽기술자격_1급</span>&nbsp;<span style={{ fontSize: '13px', fontWeight: '100' }}>2017</span></h3>
+            <h3><span className="tag yellow">#GTQ_그래픽기술자격_1급</span>&nbsp;<span style={{ fontSize: '13px', fontWeight: '100' }}>2017</span></h3>
           </div>
 
         </div>
