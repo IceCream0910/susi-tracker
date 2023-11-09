@@ -16,7 +16,7 @@ export default function Home() {
         <Spacer y={20} />
         <a href="https://blog.yuntae.in" target="_blank">Blog</a>
         <Spacer y={20} />
-        <a href="mailto:icecream2370@kakao.com" target="_blank">icecream2370@kakao.com</a>
+        <a href="mailto:hey@yuntae.in" target="_blank">hey@yuntae.in</a>
       </section>
 
       <section className="right">
