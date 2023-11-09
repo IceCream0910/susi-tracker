@@ -61,6 +61,19 @@ a {
   text-decoration-style: dashed;
 }
 
+.nav {
+  position: absolute;
+  bottom: 80px;
+}
+
+.nav a {
+  text-decoration: none;
+}
+
+.nav a::after {
+  content: ' →';
+}
+
 .tag {
   border-radius: 30px;
   font-weight: bold;

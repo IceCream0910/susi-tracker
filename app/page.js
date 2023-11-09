@@ -4,13 +4,22 @@ import Head from "next/head";
 import Image from "next/image";
 import Spacer from "./components/spacer";
 import { SP } from "next/dist/shared/lib/utils";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useState } from "react";
 
 export default function Home() {
   const audioPlayer = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioProgress, setAudioProgress] = useState(0);
+  const [isDarkmode, setIsDarkmode] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setIsDarkmode(true);
+    } else {
+      setIsDarkmode(false);
+    }
+  }, []);
 
 
   const handlePlayPause = () => {
@@ -50,10 +59,16 @@ export default function Home() {
         <a href="https://blog.yuntae.in" target="_blank">Blog</a>
         <Spacer y={20} />
         <a href="mailto:hey@yuntae.in" target="_blank">hey@yuntae.in</a>
+        <div id="only-pc" className="nav">
+          <Spacer y={80} />
+          <a href="#about">소개</a><Spacer y={20} />
+          <a href="#github" id="only-pc">깃허브 통계</a><Spacer y={20} />
+          <a href="#projects">프로젝트</a>
+        </div>
       </section>
 
-      <section className="right">
-        <h3>&nbsp;&nbsp;&nbsp;저는 이런 사람이에요✨</h3><Spacer y={15} />
+      <section className="right" id="main-section">
+        <h3 id="about">&nbsp;&nbsp;&nbsp;저는 이런 사람이에요✨</h3><Spacer y={15} />
         <div className="card-container">
 
           <div className="card card-1x1">
@@ -129,14 +144,14 @@ export default function Home() {
 
         <Spacer y={80} />
         <div className="card-container" id="only-pc">
-          <div className="card card-2x1">
+          <div className="card card-2x1" id="github" >
             <b>Github에 잔디를 심고 있어요🪴</b>
             <Spacer y={10} />
             <a href="https://github.com/icecream0910" target="_blank"><img src="https://ghchart.rshah.org/icecream0910" width={'100%'} /></a>
           </div>
 
           <div className="card card-1x1" style={{ padding: '20px 0' }}>
-            {window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? (
+            {isDarkmode ? (
               <img src="https://github-readme-stats.vercel.app/api?username=icecream0910&bg_color=202020&hide_border=true&theme=dark&locale=kr&hide_rank=true" width={'100%'} />
             ) : (
               <img src="https://github-readme-stats.vercel.app/api?username=icecream0910&bg_color=f3f3f3&hide_border=true&theme=light&locale=kr&hide_rank=true" width={'100%'} />
@@ -145,7 +160,7 @@ export default function Home() {
         </div>
 
         <Spacer y={80} />
-        <h3>&nbsp;&nbsp;&nbsp;지금까지 이런 프로젝트들을 해왔어요🛠️</h3><Spacer y={15} />
+        <h3 id="projects" >&nbsp;&nbsp;&nbsp;지금까지 이런 프로젝트들을 해왔어요🛠️</h3><Spacer y={15} />
 
         <div className="card-container">
           <div className="card card-2x1">
