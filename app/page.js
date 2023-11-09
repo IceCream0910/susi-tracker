@@ -144,11 +144,6 @@ export default function Home() {
 
         <Spacer y={80} />
         <div className="card-container" id="only-pc">
-          <div className="card card-2x1" id="github" >
-            <b>Github에 잔디를 심고 있어요🪴</b>
-            <Spacer y={10} />
-            <a href="https://github.com/icecream0910" target="_blank"><img src="https://ghchart.rshah.org/icecream0910" width={'100%'} /></a>
-          </div>
 
           <div className="card card-1x1" style={{ padding: '20px 0' }}>
             {isDarkmode ? (
@@ -157,7 +152,15 @@ export default function Home() {
               <img src="https://github-readme-stats.vercel.app/api?username=icecream0910&bg_color=f3f3f3&hide_border=true&theme=light&locale=kr&hide_rank=true" width={'100%'} />
             )}
           </div>
+
+          <div className="card card-2x1" id="github" >
+            <b>Github에 잔디를 심고 있어요🪴</b>
+            <Spacer y={10} />
+            <a href="https://github.com/icecream0910" target="_blank"><img src="https://ghchart.rshah.org/icecream0910" width={'100%'} /></a>
+          </div>
+
         </div>
+
 
         <Spacer y={80} />
         <h3 id="projects" >&nbsp;&nbsp;&nbsp;지금까지 이런 프로젝트들을 해왔어요🛠️</h3><Spacer y={15} />
