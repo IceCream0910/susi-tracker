@@ -1,9 +1,42 @@
+"use client";
+
 import Head from "next/head";
 import Image from "next/image";
 import Spacer from "./components/spacer";
 import { SP } from "next/dist/shared/lib/utils";
+import { useRef } from "react";
+import { useState } from "react";
 
 export default function Home() {
+  const audioPlayer = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [audioProgress, setAudioProgress] = useState(0);
+
+
+  const handlePlayPause = () => {
+    const audio = audioPlayer.current;
+    if (audio.paused) {
+      audio.play();
+      setIsPlaying(true);
+    } else {
+      audio.pause();
+      setIsPlaying(false);
+    }
+  };
+
+  const handleAudioEnd = () => {
+    const audio = audioPlayer.current;
+    audio.currentTime = 0;
+    setIsPlaying(false);
+    setAudioProgress(0);
+  };
+
+  const handleTimeUpdate = () => {
+    const audio = audioPlayer.current;
+    const progress = (audio.currentTime / audio.duration) * 100;
+    setAudioProgress(progress);
+  };
+
   return (
     <>
       <section className="left">
@@ -37,26 +70,61 @@ export default function Home() {
           </div>
 
           <div className="card card-2x1">
-            이런 걸 다룰 수 있어요💻<Spacer y={20} />
+            이런 걸 다룰 수 있어요💻<Spacer y={10} />
+            <span style={{ fontSize: '17px' }}>언어</span><Spacer y={10} />
             <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
               <img className="lang-tag" src="https://img.shields.io/badge/Javascript-efd81b?style=flat-square&logo=javascript&logoColor=black" />
+              <img className="lang-tag" src="https://img.shields.io/badge/Java-db1d20?style=flat-square&logo=oracle&logoColor=white" />
+              <img className="lang-tag" src="https://img.shields.io/badge/Kotlin-d258ff?style=flat-square&logo=kotlin&logoColor=white" />
+              <img style={{ opacity: 0.8 }} className="lang-tag" src="https://img.shields.io/badge/Python-316897?style=flat-square&logo=python&logoColor=white" />
+              <img style={{ opacity: 0.5 }} className="lang-tag" src="https://img.shields.io/badge/C-005697?style=flat-square&logo=C&logoColor=white" />
+            </div><Spacer y={15} />
+            <span style={{ fontSize: '17px' }}>Front-end</span><Spacer y={10} />
+            <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
               <img className="lang-tag" src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=Next.js&logoColor=white" />
               <img className="lang-tag" src="https://img.shields.io/badge/React-00c6f7?style=flat-square&logo=React&logoColor=white" />
-              <img className="lang-tag" src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=white" />
-              <img className="lang-tag" src="https://img.shields.io/badge/node.js-488d3b?style=flat-square&logo=Node.js&logoColor=white" />
-              <img className="lang-tag" src="https://img.shields.io/badge/Git-e84e32?style=flat-square&logo=git&logoColor=white" />
-              <img className="lang-tag" src="https://img.shields.io/badge/Java-db1d20?style=flat-square&logo=oracle&logoColor=white" />
-              <img className="lang-tag" src="https://img.shields.io/badge/Python-316897?style=flat-square&logo=python&logoColor=white" />
-              <img className="lang-tag" src="https://img.shields.io/badge/C-005697?style=flat-square&logo=C&logoColor=white" />
-              <img className="lang-tag" src="https://img.shields.io/badge/Kotlin-d258ff?style=flat-square&logo=kotlin&logoColor=white" />
+              <img className="lang-tag" src="https://img.shields.io/badge/jQuery-279efb?style=flat-square&logo=jQuery&logoColor=white" />
             </div>
+            <Spacer y={15} />
+            <span style={{ fontSize: '17px' }}>Back-end</span><Spacer y={10} />
+            <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+              <img className="lang-tag" src="https://img.shields.io/badge/node.js-488d3b?style=flat-square&logo=Node.js&logoColor=white" />
+              <img className="lang-tag" src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black" />
+              <img style={{ opacity: 0.5 }} className="lang-tag" src="https://img.shields.io/badge/Spring-9cff5c?style=flat-square&logo=spring&logoColor=black" />
+              <img style={{ opacity: 0.5 }} className="lang-tag" src="https://img.shields.io/badge/mongoDB-5eec69?style=flat-square&logo=mongoDB&logoColor=black" />
+            </div>
+
+
+
           </div>
 
-          <div className="card card-1x1" style={{ padding: '0', background: 'none' }}>
-            <b>&nbsp;&nbsp;&nbsp;요즘 듣고 있는 음악🎧</b>
+          <div className="card card-1x1" style={{ position: 'relative', paddingBottom: '50%', backgroundImage: `url('https://i.scdn.co/image/ab67616d00001e02f694adfa02990eaca79fec1b')`, backgroundSize: 'cover', backgroundBlendMode: 'overlay' }}>
+            <b>요즘 듣고 있는 음악🎧</b>
             <Spacer y={10} />
-            <iframe src="https://open.spotify.com/embed/playlist/33Ir3W18gTmqm2i9iBkTK3" width="100%" height="100%" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            <div className='play-pause-button' onClick={handlePlayPause}>
+              {isPlaying ? "II" : "▶️"}
+            </div>
+            <audio ref={audioPlayer} style={{ display: 'none' }} onEnded={handleAudioEnd} onTimeUpdate={handleTimeUpdate}>
+              <source src="https://p.scdn.co/mp3-preview/ba00e93c4d1db36997f606a6073c9f2747f1243b" />
+            </audio>
+            <span style={{ position: 'absolute', bottom: '35px', left: '20px' }}>
+              <b>꿈과 책과 힘과 벽</b><br></br>
+              <span style={{ opacity: 0.7, fontSize: '15px' }}>잔나비</span>
+            </span>
+            <div
+              className="progress-bar"
+              style={{
+                position: 'absolute',
+                bottom: '20px',
+                left: '20px',
+                width: `${audioProgress}%`,
+                maxWidth: 'calc(100% - 40px)',
+                height: '2px',
+                backgroundColor: 'rgb(255, 205, 41)',
+              }}
+            />
           </div>
+
         </div>
 
         <Spacer y={80} />
