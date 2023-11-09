@@ -14,7 +14,7 @@ export default function Home() {
 
         <a href="https://github.com/icecream0910" target="_blank">Github</a>
         <Spacer y={20} />
-        <a href="https://taein-blog.vercel.app" target="_blank">Blog</a>
+        <a href="https://blog.yuntae.in" target="_blank">Blog</a>
         <Spacer y={20} />
         <a href="mailto:icecream2370@kakao.com" target="_blank">icecream2370@kakao.com</a>
       </section>
