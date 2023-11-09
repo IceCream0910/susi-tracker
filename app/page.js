@@ -61,16 +61,16 @@ export default function Home() {
           </div>
 
           <div className="card card-2x1">
-            이런 것들을 <Image src="/heart.png" width={15} height={15} style={{ position: 'relative', top: '2px' }} />해요.
+            이런 것들을 <Image src="/heart.png" width={17} height={15} style={{ position: 'relative', top: '2px' }} />해요.
             <Spacer y={5} />
             <div style={{ display: 'flex' }}>
               <h1>#개발 <span className="tag blue">{`#코딩/>`}</span> #웹🌐 <span className="tag green">#UI/UX</span><br></br>
-                #집🏠 <span className="tag pink">#아이디어</span>를_뚝딱뚝딱🔨</h1>
+                #집🏠 <span className="tag pink">#뚝딱뚝딱🔨</span> #음악🎹</h1>
             </div>
           </div>
 
           <div className="card card-2x1">
-            이런 걸 다룰 수 있어요💻<Spacer y={10} />
+            <b>이런 걸 다룰 수 있어요💻</b><Spacer y={10} />
             <span style={{ fontSize: '17px' }}>언어</span><Spacer y={10} />
             <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
               <img className="lang-tag" src="https://img.shields.io/badge/Javascript-efd81b?style=flat-square&logo=javascript&logoColor=black" />
@@ -125,6 +125,23 @@ export default function Home() {
             />
           </div>
 
+        </div>
+
+        <Spacer y={80} />
+        <div className="card-container" id="only-pc">
+          <div className="card card-2x1">
+            <b>Github에 잔디를 심고 있어요🪴</b>
+            <Spacer y={10} />
+            <a href="https://github.com/icecream0910" target="_blank"><img src="https://ghchart.rshah.org/icecream0910" width={'100%'} /></a>
+          </div>
+
+          <div className="card card-1x1" style={{ padding: '20px 0' }}>
+            {window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? (
+              <img src="https://github-readme-stats.vercel.app/api?username=icecream0910&bg_color=202020&hide_border=true&theme=dark&locale=kr&hide_rank=true" width={'100%'} />
+            ) : (
+              <img src="https://github-readme-stats.vercel.app/api?username=icecream0910&bg_color=f3f3f3&hide_border=true&theme=light&locale=kr&hide_rank=true" width={'100%'} />
+            )}
+          </div>
         </div>
 
         <Spacer y={80} />
