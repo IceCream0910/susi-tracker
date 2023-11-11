@@ -1,50 +1,35 @@
 "use client";
-
-import Head from "next/head";
 import Image from "next/image";
 import Spacer from "./components/spacer";
-import { SP } from "next/dist/shared/lib/utils";
-import { useEffect, useRef } from "react";
-import { useState } from "react";
+import Music from "./components/music";
+import Contribution from "./components/contribution";
+import { useState, useRef, useEffect } from "react";
+import Mbti from "./components/mbti";
+import Age from "./components/age";
 
 export default function Home() {
-  const audioPlayer = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [audioProgress, setAudioProgress] = useState(0);
-  const [isDarkmode, setIsDarkmode] = useState(false);
+  const [showMore, setShowMore] = useState(false);
+  const cardContainerRef = useRef(null);
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setIsDarkmode(true);
-    } else {
-      setIsDarkmode(false);
+    if (cardContainerRef.current) {
+      if (showMore) {
+        cardContainerRef.current.style.display = "grid";
+        cardContainerRef.current.animate(
+          { transform: 'scale(1.01)', opacity: 1 },
+          { duration: 300, easing: 'ease' }
+        );
+      } else {
+        cardContainerRef.current.animate(
+          { transform: 'scale(1.01)', opacity: 0 },
+          { duration: 700, easing: 'ease' }
+        );
+        setTimeout(() => {
+          cardContainerRef.current.style.display = "none";
+        }, 500);
+      }
     }
-  }, []);
-
-
-  const handlePlayPause = () => {
-    const audio = audioPlayer.current;
-    if (audio.paused) {
-      audio.play();
-      setIsPlaying(true);
-    } else {
-      audio.pause();
-      setIsPlaying(false);
-    }
-  };
-
-  const handleAudioEnd = () => {
-    const audio = audioPlayer.current;
-    audio.currentTime = 0;
-    setIsPlaying(false);
-    setAudioProgress(0);
-  };
-
-  const handleTimeUpdate = () => {
-    const audio = audioPlayer.current;
-    const progress = (audio.currentTime / audio.duration) * 100;
-    setAudioProgress(progress);
-  };
+  }, [showMore]);
 
   return (
     <>
@@ -68,11 +53,11 @@ export default function Home() {
       </section>
 
       <section className="right" id="main-section">
-        <h3 id="about">&nbsp;&nbsp;&nbsp;저는 이런 사람이에요✨</h3><Spacer y={15} />
+        <h3 id="about">&nbsp;&nbsp;&nbsp;저는 이런 사람이에요 ✨</h3><Spacer y={15} />
         <div className="card-container">
 
           <div className="card card-1x1">
-            새로움에 끊임없이 <span className="underlined"><b>도전</b></span>하는 <b>고등학생 개발자</b>입니다.
+            새로움에 끊임없이 <span className="underlined"><b>도전</b></span>하는 <b>개발자</b>입니다.
           </div>
 
           <div className="card card-2x1">
@@ -85,7 +70,7 @@ export default function Home() {
           </div>
 
           <div className="card card-2x1">
-            <b>이런 걸 다룰 수 있어요💻</b><Spacer y={10} />
+            <b>이런 걸 다룰 수 있어요 💻</b><Spacer y={10} />
             <span style={{ fontSize: '17px' }}>언어</span><Spacer y={10} />
             <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
               <img className="lang-tag" src="https://img.shields.io/badge/Javascript-efd81b?style=flat-square&logo=javascript&logoColor=black" />
@@ -113,57 +98,48 @@ export default function Home() {
 
           </div>
 
-          <div className="card card-1x1" style={{ position: 'relative', paddingBottom: '50%', backgroundImage: `url('https://i.scdn.co/image/ab67616d00001e02f694adfa02990eaca79fec1b')`, backgroundSize: 'cover', backgroundBlendMode: 'overlay' }}>
-            <b>요즘 듣고 있는 음악🎧</b>
-            <Spacer y={10} />
-            <div className='play-pause-button' onClick={handlePlayPause}>
-              {isPlaying ? "II" : "▶️"}
-            </div>
-            <audio ref={audioPlayer} style={{ display: 'none' }} onEnded={handleAudioEnd} onTimeUpdate={handleTimeUpdate}>
-              <source src="https://p.scdn.co/mp3-preview/ba00e93c4d1db36997f606a6073c9f2747f1243b" />
-            </audio>
-            <span style={{ position: 'absolute', bottom: '35px', left: '20px' }}>
-              <b>꿈과 책과 힘과 벽</b><br></br>
-              <span style={{ opacity: 0.7, fontSize: '15px' }}>잔나비</span>
-            </span>
-            <div
-              className="progress-bar"
-              style={{
-                position: 'absolute',
-                bottom: '20px',
-                left: '20px',
-                width: `${audioProgress}%`,
-                maxWidth: 'calc(100% - 40px)',
-                height: '2px',
-                backgroundColor: 'rgb(255, 205, 41)',
-              }}
-            />
-          </div>
+          <Music src={'https://p.scdn.co/mp3-preview/ba00e93c4d1db36997f606a6073c9f2747f1243b'}
+            image={'https://i.scdn.co/image/ab67616d00001e02f694adfa02990eaca79fec1b'} />
+        </div>
+        <Spacer y={20} />
 
+        <div className="card-container" ref={cardContainerRef} style={{ display: 'none' }}>
+          <Age birth={2005} />
+
+          <Mbti />
+
+          <div className="card card-1x1">
+            좋아하는 문구<Spacer y={10} />
+            <span className="handwriting">오롯이 너만의 속도를 따라가야,<br></br>
+              어떤 기류에도 흔들리지 않을테니까</span>
+            <Spacer y={10} />
+            <span style={{ fontSize: '12px', opacity: 0.5, float: 'right' }}>ㅡ ｢Airplane - IZ*ONE｣  중</span>
+          </div>
+        </div>
+        <Spacer y={20} />
+
+        <div style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px', width: 'fit-content' }}
+          onClick={() => setShowMore(!showMore)}>
+          <span className="tag" style={{
+            background: 'var(--foreground)', color: 'var(--background)', width: '30px', height: '30px', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '25px'
+          }}><span style={{ marginTop: '-5px' }}>{showMore ? '-' : '+'}</span></span>{showMore ? 'TMI 그만보기' : 'TMI 더보기'}
         </div>
 
         <Spacer y={80} />
-        <div className="card-container" id="only-pc">
+        <h3 id="github">&nbsp;&nbsp;&nbsp;Github 통계 📂</h3><Spacer y={15} />
+        <div className="card-container">
 
-          <div className="card card-1x1" style={{ padding: '20px 0' }}>
-            {isDarkmode ? (
-              <img src="https://github-readme-stats.vercel.app/api?username=icecream0910&bg_color=202020&hide_border=true&theme=dark&locale=kr&hide_rank=true" width={'100%'} />
-            ) : (
-              <img src="https://github-readme-stats.vercel.app/api?username=icecream0910&bg_color=f3f3f3&hide_border=true&theme=light&locale=kr&hide_rank=true" width={'100%'} />
-            )}
-          </div>
+          <Contribution />
 
-          <div className="card card-2x1" id="github" >
-            <b>Github에 잔디를 심고 있어요🪴</b>
-            <Spacer y={10} />
-            <a href="https://github.com/icecream0910" target="_blank"><img src="https://ghchart.rshah.org/icecream0910" width={'100%'} /></a>
+          <div className="card card-2x1" id="only-pc" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <img src="http://github-readme-streak-stats.herokuapp.com?user=icecream0910&theme=transparent&hide_border=true&locale=ko&date_format=%5BY.%5Dn.j&ring=46AAFF&currStreakNum=46AAFF&sideNums=46AAFF&fire=FF0000&excludeDaysLabel=46AAFF&sideLabels=46AAFF&dates=347DBC" alt="GitHub Streak" width={'100%'} />
           </div>
 
         </div>
 
 
         <Spacer y={80} />
-        <h3 id="projects" >&nbsp;&nbsp;&nbsp;지금까지 이런 프로젝트들을 해왔어요🛠️</h3><Spacer y={15} />
+        <h3 id="projects" >&nbsp;&nbsp;&nbsp;지금까지 이런 프로젝트들을 해왔어요 🛠️</h3><Spacer y={15} />
 
         <div className="card-container">
           <div className="card card-2x1">
@@ -316,13 +292,13 @@ export default function Home() {
 
         <div className="card-container">
           <div className="card card-1x1">
-            <b>학력🏫</b><Spacer y={15} />
+            <b>학력 🏫</b><Spacer y={15} />
             <h3>성일고등학교&nbsp;<span style={{ fontSize: '13px', fontWeight: '100' }}>일반 인문계</span></h3>
             <span className="tag green">→대학 입시중</span>
           </div>
 
           <div className="card card-2x1">
-            <b>자격증🪪</b><Spacer y={15} />
+            <b>자격증 🪪</b><Spacer y={15} />
             <Spacer y={5} />
             <h3>
               <span className="tag blue">#정보처리기능사↙</span>&nbsp;<span style={{ fontSize: '13px', fontWeight: '100' }}>2017</span></h3>
