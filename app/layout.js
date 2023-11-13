@@ -4,8 +4,8 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: '태인 @icecream',
-  description: '새로움에 끊임없이 도전하는 개발자입니다',
+  title: '태인\'s 수시 트래커',
+  description: '',
 }
 
 export default function RootLayout({ children }) {
