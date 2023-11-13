@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Spacer from "../components/spacer";
 
-const Card = ({ name, logo, status, primaryDate, interviewDate, finalDate }) => {
+const Card = ({ name, logo, status, primaryDate, interviewDate, finalDate, link }) => {
     const [statusText, setStatusText] = useState('');
     const [statusColor, setStatusColor] = useState('');
     const [primaryDday, setPrimaryDday] = useState(0);
@@ -78,7 +78,8 @@ const Card = ({ name, logo, status, primaryDate, interviewDate, finalDate }) => 
     }, [primaryDday, interviewDday, finalDday]);
 
     return (
-        <div className={`card card-1x1 ${statusColor}`}>
+        <div className={`card card-1x1 ${statusColor}`}
+            onClick={() => window.open(link, '_blank')}>
             <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
                 <b style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><img src={logo} width="30px" height={'30px'} />
                     {name}</b>

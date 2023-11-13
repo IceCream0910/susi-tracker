@@ -86,8 +86,7 @@ h4 {
 
 a {
   color: inherit;
-  text-decoration: underline;
-  text-decoration-style: dashed;
+  text-decoration: none;
 }
 
 .nav {
