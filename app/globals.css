@@ -119,6 +119,11 @@ a {
   color: #fff;
 }
 
+.tag.yellow {
+  background-color: #ffcd29;
+  color: #000;
+}
+
 .tag.gray {
   background-color: rgb(90, 90, 90);
   color: #fff;
@@ -139,6 +144,10 @@ a {
 
 .card.red {
   border: 1px solid rgb(255, 122, 122);
+}
+
+.card.yellow {
+  border: 1px solid #ffcd29;
 }
 
 img.lang-tag {

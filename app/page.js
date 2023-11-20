@@ -19,11 +19,12 @@ export default function Home() {
       <section className="right" id="main-section">
         <div className="card-container">
           {/*
-          status
+          @status
           0: 발표 전
-          1: 1차 합격
-          2: 최종 합격
+          1: 1차합격
+          2: 최초합격
           3: 불합격
+          4: 예비
           */}
 
           <Card
@@ -31,7 +32,7 @@ export default function Home() {
             logo={'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Logo_of_Chung-Ang_University.svg/1088px-Logo_of_Chung-Ang_University.svg.png'}
             status={0}
             finalDate={new Date('2023-12-08')}
-            link={'https://admission.cau.ac.kr/main.do'}
+            link={'https://admission.cau.ac.kr/submenu.do?menuurl=cRn%2FaEwx6apTQh9HEMyZTw%3D%3D&categoryid=56'}
           />
 
           <Card
@@ -47,7 +48,7 @@ export default function Home() {
           <Card
             name={'건국대학교'}
             logo={'https://xemi.co.kr/wp-content/uploads/2017/02/%EA%B1%B4%EA%B5%AD%EB%8C%80logo.png'}
-            status={0}
+            status={3}
             primaryDate={new Date('2023-11-17')}
             interviewDate={new Date('2023-12-02')}
             finalDate={new Date('2023-12-15')}
@@ -57,7 +58,7 @@ export default function Home() {
           <Card
             name={'동국대학교'}
             logo={'https://d1qzykz9iz00c7.cloudfront.net/static/logo_new/logo_c081.png'}
-            status={0}
+            status={3}
             primaryDate={new Date('2023-11-14')}
             interviewDate={new Date('2023-12-09')}
             finalDate={new Date('2023-12-15')}

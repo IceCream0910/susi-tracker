@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Spacer from "../components/spacer";
 
-const Card = ({ name, logo, status, primaryDate, interviewDate, finalDate, link }) => {
+const Card = ({ name, logo, status, primaryDate, interviewDate, finalDate, link, preNum }) => {
     const [statusText, setStatusText] = useState('');
     const [statusColor, setStatusColor] = useState('');
     const [primaryDday, setPrimaryDday] = useState(0);
@@ -18,16 +18,20 @@ const Card = ({ name, logo, status, primaryDate, interviewDate, finalDate, link 
                 setStatusColor('gray');
                 break;
             case 1:
-                setStatusText('1차 합격');
+                setStatusText('1차합격');
                 setStatusColor('blue');
                 break;
             case 2:
-                setStatusText('최종 합격');
+                setStatusText('최초합격');
                 setStatusColor('green');
                 break;
             case 3:
                 setStatusText('불합격');
                 setStatusColor('red');
+                break;
+            case 4:
+                setStatusText('예비 ' + preNum + '번');
+                setStatusColor('yellow');
                 break;
             default:
                 setStatusText('발표 전');
