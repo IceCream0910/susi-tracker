@@ -38,7 +38,7 @@ export default function Home() {
           <Card
             name={'경희대학교'}
             logo={'https://blog.kakaocdn.net/dn/xNPVc/btrN6mORbXE/qNASwIsa1TepxHWWtAzCl0/img.png'}
-            status={0}
+            status={3}
             primaryDate={new Date('2023-11-22')}
             interviewDate={new Date('2023-12-03')}
             finalDate={new Date('2023-12-15')}
