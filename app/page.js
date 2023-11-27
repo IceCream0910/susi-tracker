@@ -68,7 +68,7 @@ export default function Home() {
           <Card
             name={'숭실대학교'}
             logo={'https://jwiki.kr/wiki/images/d/d5/%EC%88%AD%EC%8B%A4%EB%8C%80%ED%95%99%EA%B5%90_%EB%A1%9C%EA%B3%A0.png'}
-            status={0}
+            status={1}
             primaryDate={new Date('2023-11-28')}
             interviewDate={new Date('2023-12-01')}
             finalDate={new Date('2023-12-15')}
