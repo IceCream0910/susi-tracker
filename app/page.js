@@ -32,7 +32,7 @@ export default function Home() {
             logo={'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Logo_of_Chung-Ang_University.svg/1088px-Logo_of_Chung-Ang_University.svg.png'}
             status={0}
             finalDate={new Date('2023-12-08')}
-            link={'https://admission.cau.ac.kr/submenu.do?menuurl=cRn%2FaEwx6apTQh9HEMyZTw%3D%3D&categoryid=56'}
+            link={'https://admission.cau.ac.kr/mainIntro/intro.do'}
           />
 
           <Card
