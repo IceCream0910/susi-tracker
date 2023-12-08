@@ -30,7 +30,7 @@ export default function Home() {
           <Card
             name={'중앙대학교'}
             logo={'https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Logo_of_Chung-Ang_University.svg/1088px-Logo_of_Chung-Ang_University.svg.png'}
-            status={0}
+            status={3}
             finalDate={new Date('2023-12-08')}
             link={'https://admission.cau.ac.kr/mainIntro/intro.do'}
           />
